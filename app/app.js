@@ -1,25 +1,58 @@
 const socket = io("http://localhost:4000/");
-// const socket = io("https://oddoneoutgame.herokuapp.com/");
+// const socket = io("https://websockets-lewis.herokuapp.com/");
 
 console.log("socket.io connected");
 
+let GLOBAL_COLOUR = "#000000";
+
 let sendEventButton = document.getElementById("event");
 let squares = document.querySelectorAll(".square");
+let colourBoxes = document.querySelectorAll(".colour-box");
+let currentColour = document.getElementById("current-colour");
+
+currentColour.style.backgroundColor = GLOBAL_COLOUR;
+
+//make the squares white
+for(let i = 0; i < squares.length; i++){
+    squares[i].style.backgroundColor = "white";
+}
 
 //change square colour on hover
 for (let i = 0; i < squares.length; i++) {
     squares[i].addEventListener("mouseover", function() {
-        socket.emit("square-hover", {square: squares[i].id});
-        //make the square change colour
-        squares[i].style.backgroundColor = 'black';
+        console.log(squares[i].style.backgroundColor);
+        if(this.style.backgroundColor == 'white'){
+            socket.emit("square-hover", {square: squares[i].id});
+            //make the square change colour
+            squares[i].style.backgroundColor = 'black';
+        }
     });
     //make white when mouse leaves square
     squares[i].addEventListener("mouseout", function() {
-        socket.emit("square-unhover", {square: squares[i].id});
-        //make the square change colour
-        squares[i].style.backgroundColor = "white";
+        if(squares[i].style.backgroundColor == 'black'){
+            socket.emit("square-unhover", {square: squares[i].id});
+            //make the square change colour
+            squares[i].style.backgroundColor = "white";
+        }
+    });
+    //make the square change to current colour when clicked
+    squares[i].addEventListener("click", function() {
+        socket.emit("square-click", {square: squares[i].id, colour: GLOBAL_COLOUR});
+        squares[i].style.backgroundColor = GLOBAL_COLOUR;
     });
 }
+
+
+for(let i = 0; i < colourBoxes.length; i++){
+    colourBoxes[i].addEventListener("click", function(){
+        console.log("colour box clicked: " + colourBoxes[i].style.backgroundColor);
+        //find the colour of the box clicked
+        GLOBAL_COLOUR = colourBoxes[i].style.backgroundColor;
+        //change the current colour square to this colour 
+        currentColour.style.backgroundColor = GLOBAL_COLOUR;
+    });
+}
+
 
 sendEventButton.addEventListener("click", function() {
     console.log("button clicked");
@@ -44,6 +77,10 @@ socket.on("square-hover", ({square}) => {
 
 socket.on("square-unhover", ({square}) => {
     document.getElementById(square).style.backgroundColor = 'white';
+});
+
+socket.on("square-click", ({square, colour}) => {
+    document.getElementById(square).style.backgroundColor = colour;
 });
 
 //FUNCTIONS

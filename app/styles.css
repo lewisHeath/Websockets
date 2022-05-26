@@ -9,6 +9,8 @@ body {
     padding : 0;
     /* transition: all 0.5s; */
     transition: all 0.5s;
+    text-align : center;
+    color: #FFFFFF;
 }
 
 h1 {
@@ -17,6 +19,10 @@ h1 {
     color : rgb(255, 255, 255);
     text-align : center;
     margin-top : 10px;
+}
+
+h3 {
+    color: #FFFFFF;
 }
 
 p {
@@ -31,13 +37,34 @@ button {
     font-weight : bold;
     color : rgb(0, 0, 0);
     background-color : rgb(255, 255, 255);
-    border : 1px solid rgb(0, 0, 0);
+    border : 2px solid rgb(0, 0, 0);
     padding : 10px;
     margin-top : 10px;
     margin-bottom : 10px;
     cursor : pointer;
+    border-radius: 10px;
 }
 
+button {
+    transition: all 0.2s;
+}
+
+button:hover {
+    transform: translate(0px, -5px);
+    transform: scale(1.1);
+    /* box-shadow: rgb(238, 238, 243) 0 10px 20px -10px; */
+}
+
+/* #event {
+    background-image: linear-gradient(170deg, #fdfaff, #aaaada 120%);
+    border : 0px solid rgb(0, 0, 0);
+    color: black;
+} */
+
+.box {
+    height: 100%;
+    /* overflow: hidden; */
+}
 .button-container {
     display : flex;
     justify-content : center;
@@ -46,15 +73,15 @@ button {
 .square {
     width : 100px;
     height : 100px;
-    background-color : rgb(255, 255, 255);
-    border : 1px solid rgb(0, 0, 0);
+    background-color : white;
+    border : 2px solid rgb(0, 0, 0);
     margin : 10px;
     cursor : pointer;
     transition: all 0.2s;
 }
 
-.square::hover {
-    scale: 1.1;
+.square:hover {
+    transform: scale(1.1);
 }
 
 .square-container {
@@ -66,9 +93,81 @@ button {
     margin-bottom : 10px;
 }
 
-.container {
+.main-content-container {
     display : flex;
     justify-content : center;
     align-items : center;
     flex-direction : column;
+    margin: 20px;
+}
+
+.top-container {
+    display : flex;
+    justify-content : space-evenly;
+    align-items : center;
+    flex-direction : row;
+    margin-top : 10px;
+    margin-bottom : 10px;
+}
+
+.top-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height:100%;
+}
+
+.colour-picker-container {
+    width: 100%;
+    display : flex;
+    justify-content : space-evenly;
+    align-items : center;
+    flex-direction : row;
+    margin-top : 10px;
+    margin-bottom : 10px;
+}
+
+.colour-box {
+    padding: 35px;
+    border-radius: 40%;
+    /* box-shadow: #817e89 0 5px 2px; */
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.2s;
+    /* width: 10px; */
+    /* height: 10px; */
+}
+
+.colour-box:hover {
+    transform: scale(1.1);
+}
+
+.left-top-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-class {
+    border-top: 1px solid rgb(255, 255, 255);
+    border-width: 90%;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.spacer {
+    height: 100%;
 }

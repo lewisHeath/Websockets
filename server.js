@@ -44,12 +44,17 @@ io.on('connection', function (socket) {
         io.emit("square-unhover", {square: square});
     });
 
+    socket.on("square-click", function({square, colour}) {
+        console.log("ID of " + socket.id + " square clicked");
+        io.emit("square-click", {square: square, colour: colour});
+    });
+
 });
 
 //GLOBAL VARIABLES FOR FUNCTIONS
 
 let colours = [
-    '#00ffec',
+    '#19d3ff',
     '#3dfc70',
     '#ffa82c',
     '#ff0081',
