@@ -1,5 +1,5 @@
-const socket = io("http://localhost:4000/");
-// const socket = io("https://websockets-lewis.herokuapp.com/");
+// const socket = io("http://localhost:4000/");
+const socket = io("https://websockets-lewis.herokuapp.com/");
 
 console.log("socket.io connected");
 
